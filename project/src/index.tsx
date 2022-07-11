@@ -4,10 +4,10 @@ import App from './components/app/app';
 import SvgSprite from './components/svg-sprite/svg-sprite';
 
 const Setting = {
-  NAME_MOVIE: 'The Grand Budapest Hotel',
-  GENRE_MOVIE: 'Drama',
-  RELISE_MOVIE: new Date(),
-  PROMO_MOVIE: 'img/the-grand-budapest-hotel-poster.jpg',
+  NameMovie: 'The Grand Budapest Hotel',
+  GenreMovie: 'Drama',
+  ReliseMovie: new Date(),
+  PromoMovie: 'img/the-grand-budapest-hotel-poster.jpg',
 } as const;
 
 const root = ReactDOM.createRoot(
@@ -19,10 +19,10 @@ root.render(
     <SvgSprite />
 
     <App
-      nameMovie = {Setting.NAME_MOVIE}
-      genreMovie = {Setting.GENRE_MOVIE}
-      reliseMovie = {Setting.RELISE_MOVIE}
-      promoMovie = {Setting.PROMO_MOVIE}
+      nameMovie = {Setting.NameMovie}
+      genreMovie = {Setting.GenreMovie}
+      reliseMovie = {Setting.ReliseMovie}
+      promoMovie = {Setting.PromoMovie}
     />
   </React.StrictMode>,
 );
