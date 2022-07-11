@@ -1,16 +1,14 @@
 import MainScreen from '../../pages/main/main';
 
-type AppScreenProps = {
-  numbersMovies: number,
+export type AppScreenProps = {
   nameMovie: string,
   genreMovie: string,
   reliseMovie: Date,
   promoMovie: string,
 }
 
-function App (props:AppScreenProps): JSX.Element {
+export default function App (props:AppScreenProps): JSX.Element {
   const {
-    numbersMovies,
     nameMovie,
     genreMovie,
     reliseMovie,
@@ -19,7 +17,6 @@ function App (props:AppScreenProps): JSX.Element {
 
   return (
     <MainScreen
-      numbersMovies = {numbersMovies}
       nameMovie = {nameMovie}
       genreMovie = {genreMovie}
       reliseMovie = {reliseMovie}
@@ -27,5 +24,3 @@ function App (props:AppScreenProps): JSX.Element {
     />
   );
 }
-
-export default App;

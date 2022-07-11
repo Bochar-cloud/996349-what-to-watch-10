@@ -1,4 +1,4 @@
-function MoviePreview ():JSX.Element {
+export default function MoviePreview ():JSX.Element {
   return (
     <article className="small-film-card catalog__films-card">
       <div className="small-film-card__image">
@@ -10,5 +10,3 @@ function MoviePreview ():JSX.Element {
     </article>
   );
 }
-
-export default MoviePreview;
