@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/app/app';
-import SvgSprite from './components/svg-sprite/svg-sprite';
 
 const Setting = {
   NameMovie: 'The Grand Budapest Hotel',
@@ -16,7 +15,6 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <SvgSprite />
 
     <App
       nameMovie = {Setting.NameMovie}
