@@ -1,6 +1,6 @@
 import FooterComponent from '../../components/footer/footer';
 
-export default function SingInScreen ():JSX.Element {
+export default function LoginScreen ():JSX.Element {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
