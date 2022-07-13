@@ -1,6 +1,6 @@
 import HeaderComponent from '../../components/header/header';
 
-export default function AddReviewScreen ():JSX.Element {
+export default function ReviewScreen ():JSX.Element {
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">

@@ -4,7 +4,7 @@ import FooterComponent from '../../components/footer/footer';
 
 const MOVIE_DETAIL_NUMBERS_MOVIES = 4;
 
-export default function MovieDetailScreen ():JSX.Element {
+export default function FilmScreen ():JSX.Element {
   const numbers = Array.from({length: MOVIE_DETAIL_NUMBERS_MOVIES}, (val, idx) => idx + 1);
   const moviePreviewItems = numbers.map((number) => <MoviePreview key={number}/>);
 
@@ -52,13 +52,13 @@ export default function MovieDetailScreen ():JSX.Element {
               <nav className="film-nav film-card__nav">
                 <ul className="film-nav__list">
                   <li className="film-nav__item film-nav__item--active">
-                    <a href="#" className="film-nav__link">Overview</a>
+                    <a href="/" className="film-nav__link">Overview</a>
                   </li>
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Details</a>
+                    <a href="/" className="film-nav__link">Details</a>
                   </li>
                   <li className="film-nav__item">
-                    <a href="#" className="film-nav__link">Reviews</a>
+                    <a href="/" className="film-nav__link">Reviews</a>
                   </li>
                 </ul>
               </nav>
