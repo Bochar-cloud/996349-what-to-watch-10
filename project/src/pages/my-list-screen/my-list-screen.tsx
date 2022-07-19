@@ -1,11 +1,15 @@
-import MoviePreview from '../../components/movie-preview/movie-preview';
 import FooterComponent from '../../components/footer/footer';
+import FilmList from '../../components/film-list/film-list';
+import {Films} from '../../types/film';
 
-const MY_LIST_NUMBERS_MOVIES = 9;
+type MyListScreenProps = {
+  films: Films;
+};
 
-export default function MyListScreen ():JSX.Element {
-  const numbers = Array.from({length: MY_LIST_NUMBERS_MOVIES}, (val, idx) => idx + 1);
-  const moviePreviewItems = numbers.map((number) => <MoviePreview key={number}/>);
+export default function MyListScreen (props: MyListScreenProps):JSX.Element {
+  const {
+    films,
+  } = props;
 
   return (
     <div className="user-page">
@@ -35,7 +39,7 @@ export default function MyListScreen ():JSX.Element {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-          {moviePreviewItems}
+          {<FilmList films={films}/>}
         </div>
       </section>
 

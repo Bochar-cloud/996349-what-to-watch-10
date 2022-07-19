@@ -8,21 +8,20 @@ import ReviewScreen from '../../pages/review-screen/review-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
+import {Films, Film} from '../../types/film';
 
 export type AppScreenProps = {
-  nameMovie: string,
-  genreMovie: string,
-  reliseMovie: Date,
-  promoMovie: string,
+  promoFilm:Film
+  films: Films,
 }
 
 export default function App (props:AppScreenProps): JSX.Element {
   const {
-    nameMovie,
-    genreMovie,
-    reliseMovie,
-    promoMovie,
+    promoFilm,
+    films
   } = props;
+
+  const [firstFilm] = films;
 
   return (
     <BrowserRouter>
@@ -31,10 +30,8 @@ export default function App (props:AppScreenProps): JSX.Element {
           path={AppRoute.Main}
           element={
             <MainScreen
-              nameMovie = {nameMovie}
-              genreMovie = {genreMovie}
-              reliseMovie = {reliseMovie}
-              promoMovie = {promoMovie}
+              promoFilm = {promoFilm}
+              films = {films}
             />
           }
         />
@@ -45,22 +42,35 @@ export default function App (props:AppScreenProps): JSX.Element {
         <Route
           path={AppRoute.MyList}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.NoAuth}>
-              <MyListScreen />
+            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+              <MyListScreen films = {films}/>
             </PrivateRoute>
           }
         />
         <Route
           path={AppRoute.Film}
-          element={<FilmScreen />}
+          element={
+            <FilmScreen
+              promoFilm = {promoFilm}
+              films = {films}
+            />
+          }
         />
         <Route
           path={AppRoute.Review}
-          element={<ReviewScreen />}
+          element={
+            <ReviewScreen
+              firstFilm = {firstFilm}
+            />
+          }
         />
         <Route
           path={AppRoute.Player}
-          element={<PlayerScreen />}
+          element={
+            <PlayerScreen
+              firstFilm = {firstFilm}
+            />
+          }
         />
         <Route
           path='*'
