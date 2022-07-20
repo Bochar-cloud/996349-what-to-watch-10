@@ -1,4 +1,4 @@
-export default function HeaderComponent ():JSX.Element {
+export default function HeaderComponent (): JSX.Element {
   return (
     <>
       <div className="film-card__bg">

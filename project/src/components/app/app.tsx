@@ -8,11 +8,11 @@ import ReviewScreen from '../../pages/review-screen/review-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
-import {Films, Film} from '../../types/film';
+import {Film} from '../../types/film';
 
 export type AppScreenProps = {
-  promoFilm:Film
-  films: Films,
+  promoFilm: Film;
+  films: Film[];
 }
 
 export default function App (props:AppScreenProps): JSX.Element {
@@ -30,8 +30,8 @@ export default function App (props:AppScreenProps): JSX.Element {
           path={AppRoute.Main}
           element={
             <MainScreen
-              promoFilm = {promoFilm}
-              films = {films}
+              promoFilm={promoFilm}
+              films={films}
             />
           }
         />
@@ -43,7 +43,7 @@ export default function App (props:AppScreenProps): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
-              <MyListScreen films = {films}/>
+              <MyListScreen films={films}/>
             </PrivateRoute>
           }
         />
@@ -51,8 +51,8 @@ export default function App (props:AppScreenProps): JSX.Element {
           path={AppRoute.Film}
           element={
             <FilmScreen
-              promoFilm = {promoFilm}
-              films = {films}
+              promoFilm={promoFilm}
+              films={films}
             />
           }
         />
@@ -60,7 +60,7 @@ export default function App (props:AppScreenProps): JSX.Element {
           path={AppRoute.Review}
           element={
             <ReviewScreen
-              firstFilm = {firstFilm}
+              firstFilm={firstFilm}
             />
           }
         />
@@ -68,7 +68,7 @@ export default function App (props:AppScreenProps): JSX.Element {
           path={AppRoute.Player}
           element={
             <PlayerScreen
-              firstFilm = {firstFilm}
+              firstFilm={firstFilm}
             />
           }
         />

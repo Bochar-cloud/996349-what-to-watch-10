@@ -18,5 +18,3 @@ export type Film = {
   isFavorite: boolean
 };
 
-export type Films = Film[];
-

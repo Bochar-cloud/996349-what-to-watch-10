@@ -4,7 +4,7 @@ import FilmList from '../../components/film-list/film-list';
 import ButtonPlay from '../../components/button-play/button-play';
 import type { AppScreenProps } from '../../components/app/app';
 
-export default function MainScreen (props: AppScreenProps):JSX.Element {
+export default function MainScreen (props: AppScreenProps): JSX.Element {
   const {
     promoFilm,
     films,

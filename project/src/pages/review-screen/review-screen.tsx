@@ -6,7 +6,7 @@ type ReviewScreenProps = {
   firstFilm: Film;
 };
 
-export default function ReviewScreen ({firstFilm}:ReviewScreenProps):JSX.Element {
+export default function ReviewScreen ({firstFilm}: ReviewScreenProps): JSX.Element {
   return (
     <section className="film-card film-card--full">
       <div className="film-card__header">

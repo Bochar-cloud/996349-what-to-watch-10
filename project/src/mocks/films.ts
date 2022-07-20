@@ -1,6 +1,6 @@
-import { Films } from '../types/film';
+import {Film} from '../types/film';
 
-export const films: Films = [
+export const films: Film[] = [
   {
     id: 1,
     name: 'The Grand Budapest Hotel',

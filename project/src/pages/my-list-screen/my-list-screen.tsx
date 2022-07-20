@@ -1,12 +1,12 @@
 import FooterComponent from '../../components/footer/footer';
 import FilmList from '../../components/film-list/film-list';
-import {Films} from '../../types/film';
+import {Film} from '../../types/film';
 
 type MyListScreenProps = {
-  films: Films;
+  films: Film[];
 };
 
-export default function MyListScreen (props: MyListScreenProps):JSX.Element {
+export default function MyListScreen (props: MyListScreenProps): JSX.Element {
   const {
     films,
   } = props;

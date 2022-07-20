@@ -5,7 +5,7 @@ import ButtonPlay from '../../components/button-play/button-play';
 import ButtonAddReview from '../../components/button-add-review/button-add-review';
 import type { AppScreenProps } from '../../components/app/app';
 
-export default function FilmScreen (props: AppScreenProps):JSX.Element {
+export default function FilmScreen (props: AppScreenProps): JSX.Element {
   const {
     promoFilm,
     films,

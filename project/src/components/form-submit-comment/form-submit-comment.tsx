@@ -4,19 +4,19 @@ import RaitingInput from '../raiting-input/raiting-input';
 const MAX_RAITING = 10;
 const DEFAULT_RAITING = 8;
 
-export default function FormSubmitComment ():JSX.Element {
+export default function FormSubmitComment (): JSX.Element {
   const [raitingFilm, setRaitingFilm] = useState(DEFAULT_RAITING);
   const [commentText, setCommentText] = useState('');
 
-  const numbers = Array.from({length: MAX_RAITING}, (val, idx) => idx + 1);
+  const numbers = Array.from({length: MAX_RAITING}, (val, idx) => MAX_RAITING - idx);
 
-  const handleInputChange = ({target}:ChangeEvent<HTMLInputElement>):void => {
+  const handleInputChange = ({target}: ChangeEvent<HTMLInputElement>): void => {
     const val = Number(target.value);
 
     setRaitingFilm(val);
   };
 
-  const handleTextariaChange = ({target}:ChangeEvent<HTMLTextAreaElement>):void => {
+  const handleTextariaChange = ({target}: ChangeEvent<HTMLTextAreaElement>): void => {
     const val = target.value;
 
     setCommentText(val);
@@ -26,12 +26,18 @@ export default function FormSubmitComment ():JSX.Element {
     <form action="#" className="add-review__form">
       <div className="rating">
         <div className="rating__stars">
-          {numbers.reverse().map((number) => <RaitingInput key={number} id={number} raitingFilm={raitingFilm} handleInputChange={handleInputChange}/>)}
+          {numbers.map((number) => <RaitingInput key={number} id={number} raitingFilm={raitingFilm} handleInputChange={handleInputChange}/>)}
         </div>
       </div>
 
       <div className="add-review__text">
-        <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text" value={commentText} onChange={handleTextariaChange}></textarea>
+        <textarea
+          className="add-review__textarea"
+          name="review-text" id="review-text"
+          placeholder="Review text"
+          value={commentText}
+          onChange={handleTextariaChange}
+        />
         <div className="add-review__submit">
           <button className="add-review__btn" type="submit">Post</button>
         </div>

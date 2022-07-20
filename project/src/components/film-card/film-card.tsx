@@ -7,7 +7,7 @@ type FilmCardProps = {
   film: Film;
 };
 
-export default function FilmCard ({film}:FilmCardProps):JSX.Element {
+export default function FilmCard ({film}: FilmCardProps): JSX.Element {
   const [activeFilmCard, setActiveFilmCard] = useState(film);
 
   const handleFilmMouseEnter = () => {
@@ -21,7 +21,8 @@ export default function FilmCard ({film}:FilmCardProps):JSX.Element {
   return (
     <article className="small-film-card catalog__films-card">
       <Link to={AppRoute.Film}>
-        <div className="small-film-card__image"
+        <div
+          className="small-film-card__image"
           onMouseEnter={handleFilmMouseEnter}
           onMouseLeave={handleFilmMouseLeave}
         >
@@ -29,7 +30,12 @@ export default function FilmCard ({film}:FilmCardProps):JSX.Element {
         </div>
       </Link>
       <h3 className="small-film-card__title">
-        <Link to={AppRoute.Film} className="small-film-card__link">{film.name}</Link>
+        <Link
+          to={AppRoute.Film}
+          className="small-film-card__link"
+        >
+          {film.name}
+        </Link>
       </h3>
     </article>
   );

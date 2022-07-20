@@ -4,7 +4,7 @@ type PlayerScreenProps = {
   firstFilm: Film;
 };
 
-export default function PlayerScreen ({firstFilm}:PlayerScreenProps):JSX.Element {
+export default function PlayerScreen ({firstFilm}: PlayerScreenProps): JSX.Element {
   return (
     <div className="player">
       <video src={firstFilm.videoLink} className="player__video" poster={firstFilm.posterImage}></video>
