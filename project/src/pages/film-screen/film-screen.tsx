@@ -1,12 +1,15 @@
-import MoviePreview from '../../components/movie-preview/movie-preview';
 import HeaderComponent from '../../components/header/header';
 import FooterComponent from '../../components/footer/footer';
+import FilmList from '../../components/film-list/film-list';
+import ButtonPlay from '../../components/button-play/button-play';
+import ButtonAddReview from '../../components/button-add-review/button-add-review';
+import type { AppScreenProps } from '../../components/app/app';
 
-const MOVIE_DETAIL_NUMBERS_MOVIES = 4;
-
-export default function FilmScreen ():JSX.Element {
-  const numbers = Array.from({length: MOVIE_DETAIL_NUMBERS_MOVIES}, (val, idx) => idx + 1);
-  const moviePreviewItems = numbers.map((number) => <MoviePreview key={number}/>);
+export default function FilmScreen (props: AppScreenProps): JSX.Element {
+  const {
+    promoFilm,
+    films,
+  } = props;
 
   return (
     <>
@@ -16,19 +19,16 @@ export default function FilmScreen ():JSX.Element {
 
           <div className="film-card__wrap">
             <div className="film-card__desc">
-              <h2 className="film-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="film-card__title">{promoFilm.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">Drama</span>
-                <span className="film-card__year">2014</span>
+                <span className="film-card__genre">{promoFilm.genre}</span>
+                <span className="film-card__year">{promoFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
+
+                <ButtonPlay />
+
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
@@ -36,7 +36,8 @@ export default function FilmScreen ():JSX.Element {
                   <span>My list</span>
                   <span className="film-card__count">9</span>
                 </button>
-                <a href="add-review.html" className="btn film-card__button">Add review</a>
+
+                <ButtonAddReview />
               </div>
             </div>
           </div>
@@ -45,7 +46,7 @@ export default function FilmScreen ():JSX.Element {
         <div className="film-card__wrap film-card__translate-top">
           <div className="film-card__info">
             <div className="film-card__poster film-card__poster--big">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={promoFilm.posterImage} alt={promoFilm.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
@@ -90,7 +91,7 @@ export default function FilmScreen ():JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            {moviePreviewItems}
+            {<FilmList films={films}/>}
           </div>
         </section>
 

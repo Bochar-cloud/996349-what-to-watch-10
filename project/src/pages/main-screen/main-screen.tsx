@@ -1,21 +1,14 @@
-import MoviePreview from '../../components/movie-preview/movie-preview';
 import HeaderComponent from '../../components/header/header';
 import FooterComponent from '../../components/footer/footer';
+import FilmList from '../../components/film-list/film-list';
+import ButtonPlay from '../../components/button-play/button-play';
 import type { AppScreenProps } from '../../components/app/app';
 
-const MAIN_NUMBERS_MOVIES = 20;
-
-export default function MainScreen (props: AppScreenProps):JSX.Element {
+export default function MainScreen (props: AppScreenProps): JSX.Element {
   const {
-    nameMovie,
-    genreMovie,
-    reliseMovie,
-    promoMovie,
+    promoFilm,
+    films,
   } = props;
-
-  const date = reliseMovie.getFullYear();
-  const numbers = Array.from({length: MAIN_NUMBERS_MOVIES}, (val, idx) => idx + 1);
-  const moviePreviewItems = numbers.map((number) => <MoviePreview key={number}/>);
 
   return (
     <>
@@ -26,23 +19,20 @@ export default function MainScreen (props: AppScreenProps):JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={promoMovie} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img src={promoFilm.posterImage} alt={promoFilm.name} width="218" height="327" />
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{nameMovie}</h2>
+              <h2 className="film-card__title">{promoFilm.name}</h2>
               <p className="film-card__meta">
-                <span className="film-card__genre">{genreMovie}</span>
-                <span className="film-card__year">{date}</span>
+                <span className="film-card__genre">{promoFilm.genre}</span>
+                <span className="film-card__year">{promoFilm.released}</span>
               </p>
 
               <div className="film-card__buttons">
-                <button className="btn btn--play film-card__button" type="button">
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
+
+                <ButtonPlay />
+
                 <button className="btn btn--list film-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="#add"></use>
@@ -94,7 +84,7 @@ export default function MainScreen (props: AppScreenProps):JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            {moviePreviewItems}
+            {<FilmList films={films} />}
           </div>
 
           <div className="catalog__more">
