@@ -2,20 +2,31 @@ import {useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Film} from '../../types/film';
 import {AppRoute} from '../../const';
+import VideoPlayer from '../../components/video-player/video-player';
+
+const TIMER_DELAY_MS = 1000;
 
 type FilmCardProps = {
   film: Film;
 };
 
+let timerId: ReturnType<typeof setTimeout>;
+
 export default function FilmCard ({film}: FilmCardProps): JSX.Element {
-  const [activeFilmCard, setActiveFilmCard] = useState(film);
+  const [isActiveFilmCard, setIsActiveFilmCard] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const handleFilmMouseEnter = () => {
-    setActiveFilmCard(film);
+    timerId = setTimeout(() => {
+      setIsActiveFilmCard(true);
+      setIsPlaying(true);
+    },TIMER_DELAY_MS);
   };
 
   const handleFilmMouseLeave = () => {
-    setActiveFilmCard(film);
+    clearTimeout(timerId);
+    setIsActiveFilmCard(false);
+    setIsPlaying(false);
   };
 
   return (
@@ -26,7 +37,16 @@ export default function FilmCard ({film}: FilmCardProps): JSX.Element {
           onMouseEnter={handleFilmMouseEnter}
           onMouseLeave={handleFilmMouseLeave}
         >
-          <img src={activeFilmCard.previewImage} alt={film.name} width="280" height="175" />
+          {
+            isActiveFilmCard ?
+              <VideoPlayer
+                src={film.videoLink}
+                isPlaying={isPlaying}
+                autoPlay={isActiveFilmCard}
+                poster={film.previewImage}
+              /> :
+              <img src={film.previewImage} alt={film.name} width="280" height="175" />
+          }
         </div>
       </Link>
       <h3 className="small-film-card__title">
