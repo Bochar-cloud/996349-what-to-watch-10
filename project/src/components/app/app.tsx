@@ -9,16 +9,19 @@ import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import {Film} from '../../types/film';
+import {Review} from '../../types/review';
 
 export type AppScreenProps = {
   promoFilm: Film;
   films: Film[];
+  reviews: Review[];
 }
 
 export default function App (props:AppScreenProps): JSX.Element {
   const {
     promoFilm,
-    films
+    films,
+    reviews,
   } = props;
 
   const [firstFilm] = films;
@@ -51,6 +54,7 @@ export default function App (props:AppScreenProps): JSX.Element {
           path={AppRoute.Film}
           element={
             <FilmScreen
+              reviews={reviews}
               promoFilm={promoFilm}
               films={films}
             />
