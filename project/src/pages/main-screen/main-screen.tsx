@@ -84,7 +84,7 @@ export default function MainScreen (props: AppScreenProps): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            {<FilmList films={films} />}
+            {<FilmList films={films} isMoreFilms={false} />}
           </div>
 
           <div className="catalog__more">

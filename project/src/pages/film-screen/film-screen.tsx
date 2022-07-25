@@ -91,7 +91,7 @@ export default function FilmScreen (props: AppScreenProps): JSX.Element {
           <h2 className="catalog__title">More like this</h2>
 
           <div className="catalog__films-list">
-            {<FilmList films={films}/>}
+            {<FilmList films={films} isMoreFilms />}
           </div>
         </section>
 
