@@ -2,9 +2,14 @@ import HeaderComponent from '../../components/header/header';
 import FooterComponent from '../../components/footer/footer';
 import FilmList from '../../components/film-list/film-list';
 import ButtonPlay from '../../components/button-play/button-play';
-import type { AppScreenProps } from '../../components/app/app';
+import {Film} from '../../types/film';
 
-export default function MainScreen (props: AppScreenProps): JSX.Element {
+type MainScreenProps = {
+  promoFilm: Film;
+  films: Film[];
+};
+
+export default function MainScreen (props: MainScreenProps): JSX.Element {
   const {
     promoFilm,
     films,
@@ -84,7 +89,7 @@ export default function MainScreen (props: AppScreenProps): JSX.Element {
           </ul>
 
           <div className="catalog__films-list">
-            {<FilmList films={films} />}
+            {<FilmList films={films} isMoreFilms={false} />}
           </div>
 
           <div className="catalog__more">
