@@ -20,6 +20,8 @@ export default function FilmScreen (props: FilmScreenProps): JSX.Element {
     reviews,
   } = props;
 
+  const [firstFilm] = films;
+
   return (
     <>
       <section className="film-card film-card--full">
@@ -59,7 +61,7 @@ export default function FilmScreen (props: FilmScreenProps): JSX.Element {
             </div>
 
             <div className="film-card__desc">
-              {<Tabs film={films[0]} reviews={reviews}/>}
+              {<Tabs film={firstFilm} reviews={reviews}/>}
             </div>
           </div>
         </div>

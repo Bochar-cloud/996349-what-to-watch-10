@@ -1,5 +1,6 @@
 import {Review} from '../../types/review';
 import {normaliseDate} from '../../utils';
+import {DateFormats} from '../../const';
 
 type ReviewProps = {
   review: Review;
@@ -19,7 +20,11 @@ export default function ReviewItem ({review}: ReviewProps): JSX.Element {
         <p className="review__text">{comment}</p>
         <footer className="review__details">
           <cite className="review__author">{user.name}</cite>
-          <time className="review__date" dateTime="2016-12-24">{normaliseDate(date)}</time>
+          <time className="review__date"
+            dateTime={normaliseDate(date, DateFormats.DateTime)}
+          >
+            {normaliseDate(date, DateFormats.Review)}
+          </time>
         </footer>
       </blockquote>
       <div className="review__rating">{rating}</div>

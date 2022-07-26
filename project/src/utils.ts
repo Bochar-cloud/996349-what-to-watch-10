@@ -1,5 +1,7 @@
 import dayjs from 'dayjs';
 
-const normaliseDate = (date: string): string => dayjs(date).format('MMMM D, YYYY');
+const normaliseDate = (date: string, place: string): string => dayjs(date).format(place);
+
+// const normalizeFilmDate = (date, placeDate = 'relise-date') => ;
 
 export {normaliseDate};

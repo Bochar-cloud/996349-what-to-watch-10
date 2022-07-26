@@ -12,3 +12,8 @@ export enum AuthorizationStatus {
   NoAuth = 'NO_AUTH',
   Unknown = 'UNKNOWN',
 }
+
+export enum DateFormats {
+  Review = 'MMMM D, YYYY',
+  DateTime = 'YYYY-MM-D',
+}
