@@ -1,3 +1,5 @@
+export const DEFAULT_FILTER = 'All genres';
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
