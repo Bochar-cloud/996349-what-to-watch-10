@@ -1,5 +1,7 @@
 export const DEFAULT_FILTER = 'All genres';
 
+export const FILMS_COUNT_STEP = 8;
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
