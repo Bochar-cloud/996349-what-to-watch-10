@@ -39,7 +39,7 @@ export const films: Film[] = [
       'Bill Murray'
     ],
     runTime: 99,
-    genre: 'Comedy',
+    genre: 'Crime',
     released: 2020,
     isFavorite: true
   },
@@ -60,7 +60,7 @@ export const films: Film[] = [
       'Bill Murray'
     ],
     runTime: 99,
-    genre: 'Comedy',
+    genre: 'Adventure',
     released: 2017,
     isFavorite: false
   },
@@ -81,7 +81,7 @@ export const films: Film[] = [
       'Bill Murray'
     ],
     runTime: 99,
-    genre: 'Comedy',
+    genre: 'Drama',
     released: 2012,
     isFavorite: true
   },
@@ -102,7 +102,7 @@ export const films: Film[] = [
       'Bill Murray'
     ],
     runTime: 99,
-    genre: 'Comedy',
+    genre: 'Adventure',
     released: 2014,
     isFavorite: false
   },
@@ -123,7 +123,7 @@ export const films: Film[] = [
       'Bill Murray'
     ],
     runTime: 99,
-    genre: 'Comedy',
+    genre: 'Adventure',
     released: 2020,
     isFavorite: true
   },
@@ -144,7 +144,7 @@ export const films: Film[] = [
       'Bill Murray'
     ],
     runTime: 99,
-    genre: 'Comedy',
+    genre: 'Thriller',
     released: 2017,
     isFavorite: false
   },
@@ -165,7 +165,7 @@ export const films: Film[] = [
       'Bill Murray'
     ],
     runTime: 99,
-    genre: 'Comedy',
+    genre: 'Action',
     released: 2012,
     isFavorite: true
   },
