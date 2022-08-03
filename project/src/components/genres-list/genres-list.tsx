@@ -5,7 +5,6 @@ import classNames from 'classnames';
 import {Film} from '../../types/film';
 import FilmList from '../../components/film-list/film-list';
 import {getGenreFilms, selectGenre} from '../../store/action';
-import {DEFAULT_FILTER} from '../../const';
 
 
 type GenresListProps = {
@@ -17,7 +16,7 @@ export default function GenresList ({films}: GenresListProps):JSX.Element {
   const [searchParams] = useSearchParams({});
   const dispatch = useAppDispatch();
 
-  const genres = useGenresList(DEFAULT_FILTER, films);
+  const genres = useGenresList(films);
 
   const currentSearchParam = searchParams.get('filter');
 

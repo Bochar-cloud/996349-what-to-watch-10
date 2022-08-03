@@ -14,17 +14,8 @@ const reducer = createReducer(initialState, (builder) => {
     state.activeGenre = action.payload.activeGenre;
   });
   builder.addCase(getGenreFilms, (state, action) => {
-    state.films = action.payload.films.filter(({genre}) => {
-      if (state.activeGenre === initialState.activeGenre) {
-        return true;
-      }
-
-      if (genre === action.payload.activeGenre) {
-        return true;
-      }
-
-      return false;
-    });
+    state.films = action.payload.films.filter(({genre}) =>
+      state.activeGenre === initialState.activeGenre || genre === action.payload.activeGenre);
   });
 });
 
