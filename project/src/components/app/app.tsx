@@ -10,19 +10,31 @@ import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import {Film} from '../../types/film';
 import {Review} from '../../types/review';
+import {useAppSelector} from '../../hooks';
+import LoadingScreen from '../../pages/loading-screen/loading-screen';
+import {isCheckedAuth} from '../../utils';
 
 export type AppScreenProps = {
   promoFilm: Film;
-  films: Film[];
   reviews: Review[];
 }
 
 export default function App (props:AppScreenProps): JSX.Element {
   const {
     promoFilm,
-    films,
     reviews,
   } = props;
+
+  const {films,
+    authorizationStatus,
+    isDataLoaded
+  } = useAppSelector((state) => state);
+
+  if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
   const [firstFilm] = films;
 
@@ -34,7 +46,6 @@ export default function App (props:AppScreenProps): JSX.Element {
           element={
             <MainScreen
               promoFilm={promoFilm}
-              films={films}
             />
           }
         />

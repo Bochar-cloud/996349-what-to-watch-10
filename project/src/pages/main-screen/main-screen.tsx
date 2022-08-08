@@ -7,13 +7,11 @@ import GenresList from '../../components/genres-list/genres-list';
 
 type MainScreenProps = {
   promoFilm: Film;
-  films: Film[];
 };
 
 export default function MainScreen (props: MainScreenProps): JSX.Element {
   const {
     promoFilm,
-    films,
   } = props;
 
   return (
@@ -56,7 +54,7 @@ export default function MainScreen (props: MainScreenProps): JSX.Element {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenresList films={films}/>
+          <GenresList/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
