@@ -2,32 +2,33 @@ import {useEffect} from 'react';
 import {Link, useSearchParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector, useGenresList} from '../../hooks/';
 import classNames from 'classnames';
-import {Film} from '../../types/film';
+// import {Film} from '../../types/film';
 import FilmList from '../../components/film-list/film-list';
 import {getGenreFilms, selectGenre} from '../../store/action';
+// import {store} from '../../store';
+// import {fetchFilmsAction} from '../../store/api-actions';
 
+// type GenresListProps = {
+//   films: Film[];
+// };
 
-type GenresListProps = {
-  films: Film[];
-};
-
-export default function GenresList ({films}: GenresListProps):JSX.Element {
+export default function GenresList ():JSX.Element {
   const activeGenre = useAppSelector((state) => state.activeGenre);
   const [searchParams] = useSearchParams({});
   const dispatch = useAppDispatch();
 
-  const genres = useGenresList(films);
+  const {films, genresFilms} = useAppSelector(((state) => state));
 
   const currentSearchParam = searchParams.get('filter');
+
+  const genres = useGenresList(films);
 
   useEffect(() => {
     if (currentSearchParam) {
       dispatch(selectGenre({activeGenre: currentSearchParam}));
       dispatch(getGenreFilms({activeGenre: currentSearchParam, films: films}));
     }
-  }, [currentSearchParam, films, dispatch]);
-
-  const stateFilms = useAppSelector(((state) => state.films));
+  }, [currentSearchParam, dispatch]);
 
   return (
     <>
@@ -44,7 +45,7 @@ export default function GenresList ({films}: GenresListProps):JSX.Element {
       </ul>
 
       <div className="catalog__films-list">
-        <FilmList films={stateFilms} isMoreFilms={false} />
+        <FilmList films={genresFilms} isMoreFilms={false} />
       </div>
     </>
   );
