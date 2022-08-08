@@ -28,7 +28,7 @@ export default function GenresList ():JSX.Element {
       dispatch(selectGenre({activeGenre: currentSearchParam}));
       dispatch(getGenreFilms({activeGenre: currentSearchParam, films: films}));
     }
-  }, [currentSearchParam, dispatch]);
+  }, [currentSearchParam, dispatch, films]);
 
   return (
     <>
