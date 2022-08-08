@@ -2,15 +2,8 @@ import {useEffect} from 'react';
 import {Link, useSearchParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector, useGenresList} from '../../hooks/';
 import classNames from 'classnames';
-// import {Film} from '../../types/film';
 import FilmList from '../../components/film-list/film-list';
 import {getGenreFilms, selectGenre} from '../../store/action';
-// import {store} from '../../store';
-// import {fetchFilmsAction} from '../../store/api-actions';
-
-// type GenresListProps = {
-//   films: Film[];
-// };
 
 export default function GenresList ():JSX.Element {
   const activeGenre = useAppSelector((state) => state.activeGenre);
