@@ -46,7 +46,6 @@ export default function App (props:AppScreenProps): JSX.Element {
           element={
             <MainScreen
               promoFilm={promoFilm}
-              films={films}
             />
           }
         />

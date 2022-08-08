@@ -7,13 +7,11 @@ import GenresList from '../../components/genres-list/genres-list';
 
 type MainScreenProps = {
   promoFilm: Film;
-  films: Film[];
 };
 
 export default function MainScreen (props: MainScreenProps): JSX.Element {
   const {
     promoFilm,
-    films,
   } = props;
 
   return (
