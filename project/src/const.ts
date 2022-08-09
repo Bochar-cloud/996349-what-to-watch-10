@@ -2,7 +2,7 @@ export const DEFAULT_FILTER = 'All genres';
 
 export const FILMS_COUNT_STEP = 8;
 
-export const TIMEOUT_SHOW_ERROR = 5000;
+export const TIMEOUT = 5000;
 
 export enum AppRoute {
   Main = '/',

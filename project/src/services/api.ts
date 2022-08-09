@@ -2,9 +2,9 @@ import axios, {AxiosInstance, AxiosRequestConfig, AxiosResponse, AxiosError} fro
 import {StatusCodes} from 'http-status-codes';
 import {getToken} from './token';
 import {processErrorHandle} from './process-error-handle';
+import {TIMEOUT} from '../const';
 
 const BACKEND_URL = 'https://10.react.pages.academy/wtw';
-const REQUEST_TIMEOUT = 5000;
 
 const StatusCodeMapping: Record<number, boolean> = {
   [StatusCodes.BAD_REQUEST]: true,
@@ -17,7 +17,7 @@ const shouldDisplayError = (response: AxiosResponse) => !!StatusCodeMapping[resp
 export const createApi = (): AxiosInstance => {
   const api = axios.create({
     baseURL: BACKEND_URL,
-    timeout: REQUEST_TIMEOUT
+    timeout: TIMEOUT
   });
 
   api.interceptors.request.use(
