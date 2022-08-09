@@ -4,7 +4,7 @@ import {AppDispatch, State} from '../types/state';
 import {Film} from '../types/film';
 import {loadFilms, requireAuthorization, setError, setDataLoadedStatus} from './action';
 import {saveToken, dropToken} from '../services/token';
-import {APIRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR} from '../const';
+import {APIRoute, AuthorizationStatus, TIMEOUT} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
 import {store} from './';
@@ -14,7 +14,7 @@ export const clearErrorAction = createAsyncThunk(
   () => {
     setTimeout(
       () => store.dispatch(setError(null)),
-      TIMEOUT_SHOW_ERROR,
+      TIMEOUT,
     );
   },
 );

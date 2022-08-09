@@ -1,5 +1,5 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {getGenreFilms, selectGenre, loadFilms, requireAuthorization, setError, setDataLoadedStatus} from './action';
+import {getGenreFilms, selectGenre, loadFilms, requireAuthorization, setError, setDataLoadedStatus, getMoreFilms} from './action';
 import {Film} from '../types/film';
 import {DEFAULT_FILTER, FILMS_COUNT_STEP, AuthorizationStatus} from '../const';
 
@@ -27,14 +27,15 @@ const reducer = createReducer(initialState, (builder) => {
   builder
     .addCase(selectGenre, (state, action) => {
       state.activeGenre = action.payload.activeGenre;
+      state.filmsCount = FILMS_COUNT_STEP;
     })
     .addCase(loadFilms, (state, action) => {
       state.films = action.payload;
-      state.genresFilms = action.payload;
+      state.genresFilms = action.payload.slice(0, state.filmsCount);
     })
     .addCase(getGenreFilms, (state, {payload: {activeGenre = initialState.activeGenre, films}}) => {
       state.genresFilms = films.filter(({genre}) =>
-        state.activeGenre === initialState.activeGenre || genre === activeGenre);
+        state.activeGenre === initialState.activeGenre || genre === activeGenre).slice(0, state.filmsCount);
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;
@@ -44,6 +45,10 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(setDataLoadedStatus, (state, action) => {
       state.isDataLoaded = action.payload;
+    })
+    .addCase(getMoreFilms, (state) => {
+      state.filmsCount = state.filmsCount + FILMS_COUNT_STEP;
+      state.genresFilms = state.films.slice(0, state.filmsCount);
     });
 });
 

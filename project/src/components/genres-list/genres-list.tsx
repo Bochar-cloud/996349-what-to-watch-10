@@ -4,6 +4,7 @@ import {useAppDispatch, useAppSelector, useGenresList} from '../../hooks/';
 import classNames from 'classnames';
 import FilmList from '../../components/film-list/film-list';
 import {getGenreFilms, selectGenre} from '../../store/action';
+import PaginationButton from '../pagination-button/pagination-button';
 
 export default function GenresList ():JSX.Element {
   const activeGenre = useAppSelector((state) => state.activeGenre);
@@ -40,6 +41,8 @@ export default function GenresList ():JSX.Element {
       <div className="catalog__films-list">
         <FilmList films={genresFilms} isMoreFilms={false} />
       </div>
+
+      <PaginationButton/>
     </>
   );
 }
