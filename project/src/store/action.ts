@@ -1,6 +1,6 @@
 import {createAction} from '@reduxjs/toolkit';
 import {Film} from '../types/film';
-import {AuthorizationStatus} from '../const';
+import {AppRoute, AuthorizationStatus} from '../const';
 
 export const selectGenre = createAction<{activeGenre: string}>('main/selectGenre');
 
@@ -15,3 +15,5 @@ export const requireAuthorization = createAction<AuthorizationStatus>('user/requ
 export const setError = createAction<string | null>('setError');
 
 export const setDataLoadedStatus = createAction<boolean>('data/setDataLoadedStatus');
+
+export const redirectToRoute = createAction<AppRoute>('main/redirectToRoute');
