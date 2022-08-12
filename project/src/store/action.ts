@@ -8,6 +8,8 @@ export const getGenreFilms = createAction<{activeGenre: string, films: Film[]}>(
 
 export const loadFilms = createAction<Film[]>('data/loadFilms');
 
+export const loadFilmDetail = createAction<Film>('data/loadFilmDetail');
+
 export const getMoreFilms = createAction('main/getMoreFilms');
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');

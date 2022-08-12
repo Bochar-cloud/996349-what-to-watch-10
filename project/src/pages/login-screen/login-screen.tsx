@@ -26,9 +26,7 @@ export default function LoginScreen (): JSX.Element {
     isValid: false
   });
 
-  const validateLogin = (evt: ChangeEvent<HTMLInputElement>) => {
-    const value = evt.target.value;
-
+  const validateLogin = (value: string) => {
     if (value.search(patternEmail)) {
       return setIsValidEmail({
         isError: true,
@@ -42,9 +40,7 @@ export default function LoginScreen (): JSX.Element {
     });
   };
 
-  const validatePassword = (evt: ChangeEvent<HTMLInputElement>) => {
-    const value = evt.target.value;
-
+  const validatePassword = (value: string) => {
     if (value.length >= 1) {
       return setIsValidPassword({
         isError: false,
@@ -56,6 +52,14 @@ export default function LoginScreen (): JSX.Element {
       isError: true,
       isValid: false,
     });
+  };
+
+  const handleLoginChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    validateLogin(evt.target.value);
+  };
+
+  const handlePasswordChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    validatePassword(evt.target.value);
   };
 
   const onSubmit = (authData: AuthData) => {
@@ -120,7 +124,7 @@ export default function LoginScreen (): JSX.Element {
                 placeholder="Email address"
                 name="user-email"
                 id="user-email"
-                onChange={validateLogin}
+                onChange={handleLoginChange}
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
@@ -132,7 +136,7 @@ export default function LoginScreen (): JSX.Element {
                 type="password"
                 name="user-password"
                 id="user-password"
-                onChange={validatePassword}
+                onChange={handlePasswordChange}
               />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>

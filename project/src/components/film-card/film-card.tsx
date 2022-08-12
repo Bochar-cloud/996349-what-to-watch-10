@@ -3,16 +3,19 @@ import {Link} from 'react-router-dom';
 import {Film} from '../../types/film';
 import {AppRoute} from '../../const';
 import VideoPlayer from '../../components/video-player/video-player';
+import { store } from '../../store';
+import {fetchFilmDetailAction} from '../../store/api-actions';
 
 const TIMER_DELAY_MS = 1000;
 
 type FilmCardProps = {
   film: Film;
+  filmId: number;
 };
 
 let timerId: ReturnType<typeof setTimeout>;
 
-export default function FilmCard ({film}: FilmCardProps): JSX.Element {
+export default function FilmCard ({film, filmId}: FilmCardProps): JSX.Element {
   const [isActiveFilmCard, setIsActiveFilmCard] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -29,9 +32,13 @@ export default function FilmCard ({film}: FilmCardProps): JSX.Element {
     setIsPlaying(false);
   };
 
+  const handleFilmClick = () => {
+    store.dispatch(fetchFilmDetailAction(film));
+  };
+
   return (
     <article className="small-film-card catalog__films-card">
-      <Link to={AppRoute.Film}>
+      <Link to={AppRoute.Film} onClick={handleFilmClick}>
         <div
           className="small-film-card__image"
           onMouseEnter={handleFilmMouseEnter}
@@ -51,6 +58,7 @@ export default function FilmCard ({film}: FilmCardProps): JSX.Element {
       </Link>
       <h3 className="small-film-card__title">
         <Link
+          onClick={handleFilmClick}
           to={AppRoute.Film}
           className="small-film-card__link"
         >
