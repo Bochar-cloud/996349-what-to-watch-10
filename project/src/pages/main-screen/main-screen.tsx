@@ -1,6 +1,5 @@
 import HeaderComponent from '../../components/header/header';
 import FooterComponent from '../../components/footer/footer';
-
 import ButtonPlay from '../../components/button-play/button-play';
 import {Film} from '../../types/film';
 import GenresList from '../../components/genres-list/genres-list';

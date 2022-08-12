@@ -12,14 +12,14 @@ export default function FilmList ({films, isMoreFilms}: FilmListProps): JSX.Elem
   if (isMoreFilms) {
     return (
       <>
-        {films.map((film) => <FilmCard key={film.id} film={film}/>).slice(0, MAX_COUNT_MORE_FILMS)}
+        {films.map((film) => <FilmCard key={film.id} filmId={film.id} film={film}/>).slice(0, MAX_COUNT_MORE_FILMS)}
       </>
     );
   }
 
   return (
     <>
-      {films.map((film) => <FilmCard key={film.id} film={film}/>)}
+      {films.map((film) => <FilmCard key={film.id} filmId={film.id} film={film}/>)}
     </>
   );
 }
