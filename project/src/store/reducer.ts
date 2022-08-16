@@ -1,7 +1,8 @@
 import {createReducer} from '@reduxjs/toolkit';
-import {getGenreFilms, selectGenre, loadFilms, requireAuthorization, setError, setDataLoadedStatus, getMoreFilms, loadFilmDetail} from './action';
+import {getGenreFilms, selectGenre, loadFilms, requireAuthorization, setError, setDataLoadedStatus, getMoreFilms, loadFilmDetail, loadSimularFilms, loadFilmComments, setDisabledForm} from './action';
 import {Film} from '../types/film';
 import {DEFAULT_FILTER, FILMS_COUNT_STEP, AuthorizationStatus} from '../const';
+import { Review } from '../types/review';
 
 type InitialState = {
   activeGenre: string;
@@ -12,6 +13,9 @@ type InitialState = {
   error: string | null;
   genresFilms: Film[];
   filmDetail: Film | null;
+  sumularFilms: Film[];
+  filmComments: Review[];
+  isFormDisabled: boolean;
 };
 
 const initialState: InitialState = {
@@ -23,6 +27,9 @@ const initialState: InitialState = {
   error: null,
   genresFilms: [],
   filmDetail: null,
+  sumularFilms: [],
+  filmComments: [],
+  isFormDisabled: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -54,6 +61,15 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadFilmDetail, (state, action) => {
       state.filmDetail = action.payload;
+    })
+    .addCase(loadSimularFilms, (state, action) => {
+      state.sumularFilms = action.payload;
+    })
+    .addCase(loadFilmComments, (state, action) => {
+      state.filmComments = action.payload;
+    })
+    .addCase(setDisabledForm, (state, action) => {
+      state.isFormDisabled = action.payload;
     });
 });
 

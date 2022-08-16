@@ -2,7 +2,8 @@ import {AxiosInstance} from 'axios';
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {AppDispatch, State} from '../types/state';
 import {Film} from '../types/film';
-import {loadFilms, requireAuthorization, setError, setDataLoadedStatus, redirectToRoute, loadFilmDetail} from './action';
+import {Review, ReviewData, ReviewDataRequest} from '../types/review';
+import {loadFilms, requireAuthorization, setError, setDataLoadedStatus, redirectToRoute, loadFilmDetail, loadSimularFilms, loadFilmComments, setDisabledForm} from './action';
 import {saveToken, dropToken} from '../services/token';
 import {APIRoute, AuthorizationStatus, TIMEOUT, AppRoute} from '../const';
 import {AuthData} from '../types/auth-data';
@@ -33,15 +34,52 @@ export const fetchFilmsAction = createAsyncThunk<void, undefined, {
   },
 );
 
-export const fetchFilmDetailAction = createAsyncThunk<void, Film, {
+export const fetchFilmDetailAction = createAsyncThunk<void, string, {
   dispatch: AppDispatch,
   state: State,
   extra: AxiosInstance
 }>(
   'data/fetchFilmDetail',
-  async (film, {dispatch, extra: api}) => {
-    const {data} = await api.get<Film>(`${APIRoute.Films}/${film.id}`);
+  async (filmId, {dispatch, extra: api}) => {
+    const {data} = await api.get<Film>(`${APIRoute.Films}/${filmId}`);
     dispatch(loadFilmDetail(data));
+  },
+);
+
+export const fetchSimularFilmsAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchSimularFilms',
+  async (filmId, {dispatch, extra: api}) => {
+    const {data} = await api.get<Film[]>(`${APIRoute.Films}/${filmId}/similar`);
+    dispatch(loadSimularFilms(data));
+  }
+);
+
+export const fetchFilmCommentsAction = createAsyncThunk<void, string, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/fetchFilmComments',
+  async (filmId, {dispatch, extra: api}) => {
+    const {data} = await api.get<Review[]>(`/comments/${filmId}`);
+    dispatch(loadFilmComments(data));
+  }
+);
+
+export const addCommentAction = createAsyncThunk<void, ReviewDataRequest, {
+  dispatch: AppDispatch,
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/addComment',
+  async ({filmId, comment, rating}, {dispatch, extra: api}) => {
+    dispatch(setDisabledForm(true));
+    await api.post<ReviewData>(`/comments/${filmId}`, {comment, rating});
+    dispatch(setDisabledForm(false));
   },
 );
 
