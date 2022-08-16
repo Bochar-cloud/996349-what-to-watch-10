@@ -9,7 +9,6 @@ import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
 import {Film} from '../../types/film';
-import {Review} from '../../types/review';
 import {useAppSelector} from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import {isCheckedAuth} from '../../utils';
@@ -18,13 +17,11 @@ import {browserHistory} from '../../browser-history';
 
 export type AppScreenProps = {
   promoFilm: Film;
-  reviews: Review[];
 }
 
 export default function App (props:AppScreenProps): JSX.Element {
   const {
     promoFilm,
-    reviews,
   } = props;
 
   const {
@@ -67,19 +64,15 @@ export default function App (props:AppScreenProps): JSX.Element {
         <Route
           path={AppRoute.Film}
           element={
-            <FilmScreen
-              reviews={reviews}
-              promoFilm={promoFilm}
-              films={films}
-            />
+            <FilmScreen />
           }
         />
         <Route
           path={AppRoute.Review}
           element={
-            <ReviewScreen
-              firstFilm={firstFilm}
-            />
+            <PrivateRoute authorizationStatus={authorizationStatus}>
+              <ReviewScreen />
+            </PrivateRoute>
           }
         />
         <Route
