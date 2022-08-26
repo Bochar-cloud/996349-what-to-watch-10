@@ -7,22 +7,26 @@ import FilmList from '../../components/film-list/film-list';
 import ButtonPlay from '../../components/button-play/button-play';
 import ButtonAddReview from '../../components/button-add-review/button-add-review';
 import Tabs from '../../components/tabs/tabs';
-import {store} from '../../store';
+import ButtonMylist from '../../components/button-mylist/button-mylist';
 import {fetchFilmDetailAction, fetchSimularFilmsAction, fetchFilmCommentsAction} from '../../store/api-actions';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {getFilmComments, getFilmDetail, getFilmsSimular} from '../../store/data-procces/selectors';
 
 export default function FilmScreen (): JSX.Element {
+  const dispatch = useAppDispatch();
   const {id} = useParams();
+
+  const filmDetail = useAppSelector(getFilmDetail);
+  const simularFilms = useAppSelector(getFilmsSimular);
+  const filmComments = useAppSelector(getFilmComments);
 
   useEffect(() => {
     if (id) {
-      store.dispatch(fetchFilmDetailAction(id));
-      store.dispatch(fetchSimularFilmsAction(id));
-      store.dispatch(fetchFilmCommentsAction(id));
+      dispatch(fetchFilmDetailAction(id));
+      dispatch(fetchSimularFilmsAction(id));
+      dispatch(fetchFilmCommentsAction(id));
     }
-  }, [id]);
-
-  const {filmDetail, sumularFilms, filmComments} = useAppSelector((state) => state);
+  }, [id, dispatch]);
 
   return (
     filmDetail !== null ?
@@ -38,16 +42,9 @@ export default function FilmScreen (): JSX.Element {
                   <span className="film-card__year">{filmDetail.released}</span>
                 </p>
                 <div className="film-card__buttons">
-
                   <ButtonPlay />
 
-                  <button className="btn btn--list film-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="#add"></use>
-                    </svg>
-                    <span>My list</span>
-                    <span className="film-card__count">9</span>
-                  </button>
+                  <ButtonMylist />
 
                   <ButtonAddReview />
                 </div>
@@ -73,7 +70,7 @@ export default function FilmScreen (): JSX.Element {
             <h2 className="catalog__title">More like this</h2>
 
             <div className="catalog__films-list">
-              {<FilmList films={sumularFilms} isMoreFilms />}
+              {<FilmList films={simularFilms} isMoreFilms />}
             </div>
           </section>
 

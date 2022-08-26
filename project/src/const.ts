@@ -23,9 +23,16 @@ export enum APIRoute {
   Films = '/films',
   Login = '/login',
   Logout = '/logout',
+  Promo = '/promo',
 }
 
 export enum DateFormats {
   Review = 'MMMM D, YYYY',
   DateTime = 'YYYY-MM-D',
+}
+
+export enum NameSpace {
+  Data = 'DATA',
+  User = 'USER',
+  Common = 'COMMON',
 }

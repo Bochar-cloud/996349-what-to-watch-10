@@ -4,6 +4,7 @@ import RaitingInput from '../raiting-input/raiting-input';
 import {addCommentAction} from '../../store/api-actions';
 import {ReviewDataRequest} from '../../types/review';
 import {useNavigate, useParams} from 'react-router-dom';
+import {getIsFormDisabled} from '../../store/data-procces/selectors';
 import './form-submit-comment.css';
 
 const MAX_RAITING = 10;
@@ -11,7 +12,7 @@ const MIN_COMMENT_LENGTH = 50;
 const MAX_COMMENT_LENGTH = 400;
 
 export default function FormSubmitComment (): JSX.Element {
-  const {isFormDisabled} = useAppSelector((state) => state);
+  const isFormDisabled = useAppSelector(getIsFormDisabled);
 
   const [raitingFilm, setRaitingFilm] = useState(0);
   const [commentText, setCommentText] = useState('');

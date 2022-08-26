@@ -3,24 +3,26 @@ import {Link, useSearchParams} from 'react-router-dom';
 import {useAppDispatch, useAppSelector, useGenresList} from '../../hooks/';
 import classNames from 'classnames';
 import FilmList from '../../components/film-list/film-list';
-import {getGenreFilms, selectGenre} from '../../store/action';
 import PaginationButton from '../pagination-button/pagination-button';
+import {setActiveGenre, setFilterFilms} from '../../store/data-procces/data-procces';
+import {getFilms, getActiveGenre, getGenresFilms} from '../../store/data-procces/selectors';
 
 export default function GenresList ():JSX.Element {
-  const activeGenre = useAppSelector((state) => state.activeGenre);
+  const activeGenre = useAppSelector(getActiveGenre);
+  const films = useAppSelector(getFilms);
+  const genresFilms = useAppSelector(getGenresFilms);
+
   const [searchParams] = useSearchParams({});
+
   const dispatch = useAppDispatch();
 
-  const {films, genresFilms} = useAppSelector(((state) => state));
-
   const currentSearchParam = searchParams.get('filter');
-
   const genres = useGenresList(films);
 
   useEffect(() => {
     if (currentSearchParam) {
-      dispatch(selectGenre({activeGenre: currentSearchParam}));
-      dispatch(getGenreFilms({activeGenre: currentSearchParam, films: films}));
+      dispatch(setActiveGenre(currentSearchParam));
+      dispatch(setFilterFilms({activeGenre: currentSearchParam, films: films}));
     }
   }, [currentSearchParam, dispatch, films]);
 
