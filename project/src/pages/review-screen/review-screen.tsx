@@ -4,12 +4,12 @@ import {useAppSelector} from '../../hooks';
 import HeaderComponent from '../../components/header/header';
 import FormSubmitComment from '../../components/form-submit-comment/form-submit-comment';
 import {store} from '../../store';
-import { fetchFilmDetailAction } from '../../store/api-actions';
+import {fetchFilmDetailAction} from '../../store/api-actions';
+import {getFilmDetail} from '../../store/data-procces/selectors';
 
 
 export default function ReviewScreen (): JSX.Element {
-  const {filmDetail} = useAppSelector((state) => state);
-
+  const filmDetail = useAppSelector(getFilmDetail);
   const {id} = useParams();
 
   useEffect(() => {

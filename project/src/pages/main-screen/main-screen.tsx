@@ -1,17 +1,20 @@
+import {useEffect} from 'react';
+import {useAppDispatch} from '../../hooks';
 import HeaderComponent from '../../components/header/header';
 import FooterComponent from '../../components/footer/footer';
 import ButtonPlay from '../../components/button-play/button-play';
-import {Film} from '../../types/film';
 import GenresList from '../../components/genres-list/genres-list';
+import ButtonMylist from '../../components/button-mylist/button-mylist';
+import PromoPoster from '../../components/promo-poster/promo-poster';
+import PromoInfo from '../../components/promo-info/promo-info';
+import {fetchPromoFilmAction} from '../../store/api-actions';
 
-type MainScreenProps = {
-  promoFilm: Film;
-};
+export default function MainScreen (): JSX.Element {
+  const dispatch = useAppDispatch();
 
-export default function MainScreen (props: MainScreenProps): JSX.Element {
-  const {
-    promoFilm,
-  } = props;
+  useEffect(() => {
+    dispatch(fetchPromoFilmAction());
+  }, [dispatch]);
 
   return (
     <>
@@ -22,27 +25,16 @@ export default function MainScreen (props: MainScreenProps): JSX.Element {
         <div className="film-card__wrap">
           <div className="film-card__info">
             <div className="film-card__poster">
-              <img src={promoFilm.posterImage} alt={promoFilm.name} width="218" height="327" />
+              <PromoPoster/>
             </div>
 
             <div className="film-card__desc">
-              <h2 className="film-card__title">{promoFilm.name}</h2>
-              <p className="film-card__meta">
-                <span className="film-card__genre">{promoFilm.genre}</span>
-                <span className="film-card__year">{promoFilm.released}</span>
-              </p>
+              <PromoInfo />
 
               <div className="film-card__buttons">
-
                 <ButtonPlay />
 
-                <button className="btn btn--list film-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                  <span className="film-card__count">9</span>
-                </button>
+                <ButtonMylist />
               </div>
             </div>
           </div>

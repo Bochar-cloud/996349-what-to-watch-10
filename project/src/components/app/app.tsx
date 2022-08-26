@@ -8,27 +8,18 @@ import ReviewScreen from '../../pages/review-screen/review-screen';
 import PlayerScreen from '../../pages/player-screen/player-screen';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
 import PrivateRoute from '../private-route/private-route';
-import {Film} from '../../types/film';
 import {useAppSelector} from '../../hooks';
 import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import {isCheckedAuth} from '../../utils';
 import HistoryRouter from '../history-route/history-route';
 import {browserHistory} from '../../browser-history';
+import {getFilms, getIsDataLoaded} from '../../store/data-procces/selectors';
+import {getAuthorizationStatus} from '../../store/user-procces/selectors';
 
-export type AppScreenProps = {
-  promoFilm: Film;
-}
-
-export default function App (props:AppScreenProps): JSX.Element {
-  const {
-    promoFilm,
-  } = props;
-
-  const {
-    films,
-    authorizationStatus,
-    isDataLoaded
-  } = useAppSelector((state) => state);
+export default function App (): JSX.Element {
+  const films = useAppSelector(getFilms);
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const isDataLoaded = useAppSelector(getIsDataLoaded);
 
   if (isCheckedAuth(authorizationStatus) || isDataLoaded) {
     return (
@@ -44,9 +35,7 @@ export default function App (props:AppScreenProps): JSX.Element {
         <Route
           path={AppRoute.Main}
           element={
-            <MainScreen
-              promoFilm={promoFilm}
-            />
+            <MainScreen />
           }
         />
         <Route

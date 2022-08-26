@@ -1,12 +1,18 @@
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getMoreFilms } from '../../store/action';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {getFilmsCount, getGenresFilms} from '../../store/data-procces/selectors';
+import {setMoreFilms} from '../../store/data-procces/data-procces';
+
+import { getFilms } from '../../store/data-procces/selectors';
 
 export default function PaginationButton (): JSX.Element | null {
+  const genresFilms = useAppSelector(getGenresFilms);
+  const filmsCount = useAppSelector(getFilmsCount);
+  const films = useAppSelector(getFilms);
+
   const dispatch = useAppDispatch();
-  const {genresFilms, filmsCount} = useAppSelector((state) => state);
 
   const handleButtonMoreClick = () => {
-    dispatch(getMoreFilms());
+    dispatch(setMoreFilms(films));
   };
 
   return (filmsCount <= genresFilms.length) ?
