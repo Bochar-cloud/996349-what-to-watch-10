@@ -46,7 +46,7 @@ export default function App (): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={authorizationStatus}>
-              <MyListScreen films={films}/>
+              <MyListScreen />
             </PrivateRoute>
           }
         />
@@ -67,9 +67,7 @@ export default function App (): JSX.Element {
         <Route
           path={AppRoute.Player}
           element={
-            <PlayerScreen
-              firstFilm={firstFilm}
-            />
+            <PlayerScreen />
           }
         />
         <Route

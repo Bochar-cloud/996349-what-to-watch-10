@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit';
 import {NameSpace, DEFAULT_FILTER, FILMS_COUNT_STEP} from '../../const';
 import {DataProcces} from '../../types/state';
 import {Film} from '../../types/film';
-import {fetchFilmsAction, fetchFilmDetailAction, fetchSimularFilmsAction, fetchFilmCommentsAction, fetchPromoFilmAction} from '../api-actions';
+import {fetchFilmsAction, fetchFilmDetailAction, fetchSimularFilmsAction, fetchFilmCommentsAction, fetchPromoFilmAction, toggleFavoriteAction} from '../api-actions';
 
 const initialState: DataProcces = {
   films: [],
@@ -17,6 +17,8 @@ const initialState: DataProcces = {
   isFormDisabled: false,
   favoritesCount: 0,
   promoFilm: null,
+  favoritesFilms: [],
+  // isFavorite: false,
 };
 
 export const dataProcces = createSlice({
@@ -44,6 +46,9 @@ export const dataProcces = createSlice({
     setFavoritesCount: (state) => {
       state.favoritesCount = state.films.filter(({isFavorite}) => isFavorite).length;
     },
+    setFavoritesFilms: (state) => {
+      state.favoritesFilms = state.films.filter(({isFavorite}) => isFavorite);
+    },
   },
   extraReducers(builder) {
     builder
@@ -66,8 +71,20 @@ export const dataProcces = createSlice({
       })
       .addCase(fetchPromoFilmAction.fulfilled, (state, action) => {
         state.promoFilm = action.payload;
+      })
+      .addCase(toggleFavoriteAction.fulfilled, (state, action) => {
+        const index = state.films.findIndex((film) => film.id === action.payload.id);
+
+        if (index === -1) {
+          throw new Error('Can\'t update unexisting movie');
+        }
+
+        state.films.splice(index, 1, action.payload);
+        state.favoritesCount = state.films.filter(({isFavorite}) => isFavorite).length;
+        state.promoFilm = action.payload;
+        state.filmDetail = action.payload;
       });
   }
 });
 
-export const {setActiveGenre, setFilterFilms, setMoreFilms, setError, isDisabledForm, setFavoritesCount} = dataProcces.actions;
+export const {setActiveGenre, setFilterFilms, setMoreFilms, setError, isDisabledForm, setFavoritesCount, setFavoritesFilms} = dataProcces.actions;

@@ -7,6 +7,10 @@
   background: linear-gradient(-180deg,#180202 0%,#000 100%);
 }
 
+.loading-screen--player {
+  background: transparent;
+}
+
 .loading-screen__container {
   width: 70px;
   height: 35px;

@@ -1,10 +1,12 @@
 import {Link} from 'react-router-dom';
-import {AppRoute} from '../../const';
 
+type ButtonPlayProps = {
+  filmId: number | null;
+};
 
-export default function ButtonPlay (): JSX.Element {
+export default function ButtonPlay ({filmId}: ButtonPlayProps): JSX.Element {
   return (
-    <Link to={AppRoute.Player} className="btn btn--play film-card__button" type="button">
+    <Link to={`/player/${filmId}`} className="btn btn--play film-card__button" type="button">
       <svg viewBox="0 0 19 19" width="19" height="19">
         <use xlinkHref="#play-s"></use>
       </svg>

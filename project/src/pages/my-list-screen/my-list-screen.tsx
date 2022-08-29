@@ -1,18 +1,21 @@
+import {useEffect} from 'react';
 import FooterComponent from '../../components/footer/footer';
 import FilmList from '../../components/film-list/film-list';
-import {Film} from '../../types/film';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
 import FavoritesCount from '../../components/favorites-count/favorites-count';
+import {useAppDispatch, useAppSelector} from '../../hooks';
+import {setFavoritesFilms} from '../../store/data-procces/data-procces';
+import {getFavoritesFilms} from '../../store/data-procces/selectors';
 
-type MyListScreenProps = {
-  films: Film[];
-};
+export default function MyListScreen (): JSX.Element {
+  const dispatch = useAppDispatch();
 
-export default function MyListScreen (props: MyListScreenProps): JSX.Element {
-  const {
-    films,
-  } = props;
+  useEffect(() => {
+    dispatch(setFavoritesFilms());
+  }, [dispatch]);
+
+  const favoritesFilms = useAppSelector(getFavoritesFilms);
 
   return (
     <div className="user-page">
@@ -31,7 +34,7 @@ export default function MyListScreen (props: MyListScreenProps): JSX.Element {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <div className="catalog__films-list">
-          {<FilmList films={films} isMoreFilms={false}/>}
+          {<FilmList films={favoritesFilms} isMoreFilms={false}/>}
         </div>
       </section>
 

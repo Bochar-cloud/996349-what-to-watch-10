@@ -31,9 +31,10 @@ export default function FilmScreen (): JSX.Element {
   return (
     filmDetail !== null ?
       <>
-        <section className="film-card film-card--full">
+        <section className="film-card film-card--full" style={{backgroundColor: filmDetail.backgroundColor}}>
           <div className="film-card__hero">
-            <HeaderComponent />
+            <HeaderComponent film={filmDetail} />
+
             <div className="film-card__wrap">
               <div className="film-card__desc">
                 <h2 className="film-card__title">{filmDetail.name}</h2>
@@ -42,9 +43,9 @@ export default function FilmScreen (): JSX.Element {
                   <span className="film-card__year">{filmDetail.released}</span>
                 </p>
                 <div className="film-card__buttons">
-                  <ButtonPlay />
+                  <ButtonPlay filmId={filmDetail.id}/>
 
-                  <ButtonMylist />
+                  <ButtonMylist film={filmDetail}/>
 
                   <ButtonAddReview />
                 </div>

@@ -1,10 +1,10 @@
-import {useAppSelector} from '../../hooks';
-import {getPromoFilm} from '../../store/data-procces/selectors';
+import {Film} from '../../types/film';
 
+type PromoPosterProps = {
+  promoFilm: Film | null;
+};
 
-export default function PromoInfo (): JSX.Element | null {
-  const promoFilm = useAppSelector(getPromoFilm);
-
+export default function PromoInfo ({promoFilm}: PromoPosterProps): JSX.Element | null {
   return promoFilm &&
   <>
     <h2 className="film-card__title">{promoFilm.name}</h2>
