@@ -13,11 +13,10 @@ import LoadingScreen from '../../pages/loading-screen/loading-screen';
 import {isCheckedAuth} from '../../utils';
 import HistoryRouter from '../history-route/history-route';
 import {browserHistory} from '../../browser-history';
-import {getFilms, getIsDataLoaded} from '../../store/data-procces/selectors';
+import {getIsDataLoaded} from '../../store/data-procces/selectors';
 import {getAuthorizationStatus} from '../../store/user-procces/selectors';
 
 export default function App (): JSX.Element {
-  const films = useAppSelector(getFilms);
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
   const isDataLoaded = useAppSelector(getIsDataLoaded);
 
@@ -26,8 +25,6 @@ export default function App (): JSX.Element {
       <LoadingScreen />
     );
   }
-
-  const [firstFilm] = films;
 
   return (
     <HistoryRouter history={browserHistory}>
@@ -46,7 +43,7 @@ export default function App (): JSX.Element {
           path={AppRoute.MyList}
           element={
             <PrivateRoute authorizationStatus={authorizationStatus}>
-              <MyListScreen films={films}/>
+              <MyListScreen />
             </PrivateRoute>
           }
         />
@@ -67,9 +64,7 @@ export default function App (): JSX.Element {
         <Route
           path={AppRoute.Player}
           element={
-            <PlayerScreen
-              firstFilm={firstFilm}
-            />
+            <PlayerScreen />
           }
         />
         <Route

@@ -13,3 +13,4 @@ export const getError = (state: State) => state[NameSpace.Data].error;
 export const getIsFormDisabled = (state: State) => state[NameSpace.Data].isFormDisabled;
 export const getFavoritesCount = (state: State) => state[NameSpace.Data].favoritesCount;
 export const getPromoFilm = (state: State) => state[NameSpace.Data].promoFilm;
+export const getFavoritesFilms = (state: State) => state[NameSpace.Data].favoritesFilms;

@@ -1,21 +1,40 @@
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {AppRoute, AuthorizationStatus} from '../../const';
 import FavoritesCount from '../favorites-count/favorites-count';
-import {useAppSelector} from '../../hooks';
+import {useAppDispatch, useAppSelector} from '../../hooks';
 import {getAuthorizationStatus} from '../../store/user-procces/selectors';
+import {toggleFavoriteAction} from '../../store/api-actions';
+import {Film} from '../../types/film';
 
-export default function ButtonMylist (): JSX.Element {
+type ButtonMylistProps = {
+  film: Film | null;
+};
+
+export default function ButtonMylist ({film}: ButtonMylistProps): JSX.Element {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);
 
+  const handleMyListClick = () => {
+    if (authorizationStatus !== AuthorizationStatus.Auth) {
+      navigate(AppRoute.Login);
+      return;
+    }
+
+    if (film !== null) {
+      dispatch(toggleFavoriteAction({filmId: film.id, status: Number(!film?.isFavorite)}));
+    }
+  };
+
   return (
-    <Link to={authorizationStatus !== AuthorizationStatus.Auth ? AppRoute.Login : AppRoute.MyList} className="btn btn--list film-card__button" type="button">
+    <button className="btn btn--list film-card__button" type="button" onClick={handleMyListClick}>
       <svg viewBox="0 0 19 20" width="19" height="20">
         <use xlinkHref="#add"></use>
       </svg>
 
-      <span>My list</span>
+      <span>{film?.isFavorite ? '✓ MyList' : 'My list'}</span>
 
       <FavoritesCount />
-    </Link>
+    </button>
   );
 }

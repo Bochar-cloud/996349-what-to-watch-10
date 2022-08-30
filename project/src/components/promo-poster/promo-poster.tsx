@@ -1,8 +1,9 @@
-import {useAppSelector} from '../../hooks';
-import {getPromoFilm} from '../../store/data-procces/selectors';
+import {Film} from '../../types/film';
 
-export default function PromoPoster (): JSX.Element | null {
-  const promoFilm = useAppSelector(getPromoFilm);
+type PromoPosterProps = {
+  promoFilm: Film | null;
+};
 
+export default function PromoPoster ({promoFilm} : PromoPosterProps): JSX.Element | null {
   return promoFilm && <img src={promoFilm.posterImage} alt={promoFilm.name} width="218" height="327" />;
 }

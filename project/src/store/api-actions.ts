@@ -8,6 +8,7 @@ import {saveToken, dropToken} from '../services/token';
 import {APIRoute, TIMEOUT, AppRoute} from '../const';
 import {AuthData} from '../types/auth-data';
 import {UserData} from '../types/user-data';
+import {FavoriteStatus} from '../types/favorite';
 import {store} from './';
 
 export const clearErrorAction = createAsyncThunk(
@@ -73,6 +74,18 @@ export const fetchFilmCommentsAction = createAsyncThunk<Review[], string, {
     const {data} = await api.get<Review[]>(`/comments/${filmId}`);
     return data;
   }
+);
+
+export const toggleFavoriteAction = createAsyncThunk<Film, FavoriteStatus, {
+  state: State,
+  extra: AxiosInstance
+}>(
+  'data/toggleFavorite',
+  async ({filmId, status}, {dispatch, extra: api}) => {
+    const {data} = await api.post<Film>(`/favorite/${filmId}/${status}`);
+
+    return data;
+  },
 );
 
 export const addCommentAction = createAsyncThunk<void, ReviewDataRequest, {

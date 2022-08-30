@@ -27,9 +27,5 @@ export type DataProcces = {
   isFormDisabled: boolean;
   favoritesCount: number;
   promoFilm: Film | null;
+  favoritesFilms: Film[];
 };
-
-// export type CommonProcces = {
-//   films: Film[];
-
-// };
