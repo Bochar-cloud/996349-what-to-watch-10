@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../logo/logo';
 
-function FooterComponent (): JSX.Element {
+function Footer (): JSX.Element {
   return (
     <footer className="page-footer">
       <Logo isLight/>
@@ -13,4 +13,4 @@ function FooterComponent (): JSX.Element {
   );
 }
 
-export default React.memo(FooterComponent);
+export default React.memo(Footer);

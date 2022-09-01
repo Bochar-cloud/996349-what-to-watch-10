@@ -1,12 +1,12 @@
 import {ChangeEvent} from 'react';
 
-type RaitingInputProps = {
+type RatingInputProps = {
   id: number;
   raitingFilm: number;
   handleInputChange: ({target}: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export default function RaitingInput ({id, raitingFilm, handleInputChange}: RaitingInputProps): JSX.Element {
+export default function RatingInput ({id, raitingFilm, handleInputChange}: RatingInputProps): JSX.Element {
   return (
     <>
       <input

@@ -1,13 +1,13 @@
 import {Link} from 'react-router-dom';
-import HeaderComponent from '../../components/header/header';
-import FooterComponent from '../../components/footer/footer';
+import Header from '../../components/header/header';
+import Footer from '../../components/footer/footer';
 import './not-found-screen.css';
 
 export default function NotFoundScreen (): JSX.Element {
   return (
     <>
       <section className="film-card">
-        <HeaderComponent />
+        <Header />
       </section>
 
       <div className="page-content">
@@ -17,7 +17,7 @@ export default function NotFoundScreen (): JSX.Element {
 
             <Link className="not-found__link" to="/">Вернуться на главную</Link>
           </div>
-          <FooterComponent />
+          <Footer />
         </section>
       </div>
     </>

@@ -6,11 +6,11 @@ import {getAuthorizationStatus} from '../../store/user-procces/selectors';
 import {toggleFavoriteAction} from '../../store/api-actions';
 import {Film} from '../../types/film';
 
-type ButtonMylistProps = {
+type ButtonMyListProps = {
   film: Film | null;
 };
 
-export default function ButtonMylist ({film}: ButtonMylistProps): JSX.Element {
+export default function ButtonMyList ({film}: ButtonMyListProps): JSX.Element {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const authorizationStatus = useAppSelector(getAuthorizationStatus);

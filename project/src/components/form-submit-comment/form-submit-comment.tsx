@@ -1,6 +1,6 @@
 import {useState, ChangeEvent, FormEvent} from 'react';
 import {useAppDispatch, useAppSelector} from '../../hooks';
-import RaitingInput from '../raiting-input/raiting-input';
+import RatingInput from '../rating-input/rating-input';
 import {addCommentAction} from '../../store/api-actions';
 import {ReviewDataRequest} from '../../types/review';
 import {useNavigate, useParams} from 'react-router-dom';
@@ -32,7 +32,7 @@ export default function FormSubmitComment (): JSX.Element {
 
   const numbers = Array.from({length: MAX_RAITING}, (val, idx) => MAX_RAITING - idx);
 
-  const validateRaiting = (value: number) => {
+  const validateRating = (value: number) => {
     if (value === 0) {
       return setIsValidRaiting({
         isError: true,
@@ -64,7 +64,7 @@ export default function FormSubmitComment (): JSX.Element {
     const val = Number(target.value);
 
     setRaitingFilm(val);
-    validateRaiting(val);
+    validateRating(val);
   };
 
   const handleTextariaChange = ({target}: ChangeEvent<HTMLTextAreaElement>) => {
@@ -112,7 +112,7 @@ export default function FormSubmitComment (): JSX.Element {
     <form action="#" className="add-review__form" onSubmit={handleSubmit}>
       <div className="rating">
         <div className="rating__stars">
-          {numbers.map((number) => <RaitingInput key={number} id={number} raitingFilm={raitingFilm} handleInputChange={handleInputChange}/>)}
+          {numbers.map((number) => <RatingInput key={number} id={number} raitingFilm={raitingFilm} handleInputChange={handleInputChange}/>)}
 
           {isValidRaiting.isError &&
           <div className="add-review__error">

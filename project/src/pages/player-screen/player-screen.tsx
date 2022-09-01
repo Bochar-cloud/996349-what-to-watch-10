@@ -9,6 +9,7 @@ const SECONDS_IN_HOUR = 3600;
 const SECONDS_IN_MINUTE = 60;
 const TWO_DIGIT = 10;
 const INTEGER = 1;
+const FULL_PERCENT = 100;
 
 const formateTime = (time: number): string => time < TWO_DIGIT ? `0${time}` : `${time}`;
 
@@ -26,7 +27,7 @@ const normaliseRunTime = (duration: number, currentTime: number): string => {
   return `${formateTime(hours)}:${formateTime(minutes)}:${formateTime(seconds)}`;
 };
 
-const calcPercent = (time = 0, duration = 0) => String((time * 100) / duration);
+const calcPercent = (time = 0, duration = 0) => String((time * FULL_PERCENT) / duration);
 
 export default function PlayerScreen (): JSX.Element {
   const dispatch = useAppDispatch();

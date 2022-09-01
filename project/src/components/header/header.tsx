@@ -3,11 +3,11 @@ import { Film } from '../../types/film';
 import Logo from '../logo/logo';
 import UserBlock from '../user-block/user-block';
 
-type HeaderComponentProps = {
+type HeaderProps = {
   film?: Film;
 };
 
-function HeaderComponent ({film}: HeaderComponentProps): JSX.Element {
+function Header ({film}: HeaderProps): JSX.Element {
   return (
     <>
       <div className="film-card__bg">
@@ -25,4 +25,4 @@ function HeaderComponent ({film}: HeaderComponentProps): JSX.Element {
   );
 }
 
-export default React.memo(HeaderComponent);
+export default React.memo(Header);

@@ -1,5 +1,5 @@
 import {useEffect} from 'react';
-import FooterComponent from '../../components/footer/footer';
+import Footer from '../../components/footer/footer';
 import FilmList from '../../components/film-list/film-list';
 import Logo from '../../components/logo/logo';
 import UserBlock from '../../components/user-block/user-block';
@@ -38,7 +38,7 @@ export default function MyListScreen (): JSX.Element {
         </div>
       </section>
 
-      <FooterComponent />
+      <Footer />
     </div>
   );
 }

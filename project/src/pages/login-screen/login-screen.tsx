@@ -4,10 +4,11 @@ import {useNavigate} from 'react-router-dom';
 import {AppRoute} from '../../const';
 import {loginAction} from '../../store/api-actions';
 import {AuthData} from '../../types/auth-data';
-import FooterComponent from '../../components/footer/footer';
+import Footer from '../../components/footer/footer';
 import classNames from 'classnames';
 
 const patternEmail = /^([A-Za-z0-9_\-.])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,15})$/;
+const patterPassword = /^(?:[0-9]+[a-z]|[a-z]+[0-9])[a-z0-9]*$/i;
 
 export default function LoginScreen (): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
@@ -41,7 +42,7 @@ export default function LoginScreen (): JSX.Element {
   };
 
   const validatePassword = (value: string) => {
-    if (value.length >= 1) {
+    if (!value.search(patterPassword)) {
       return setIsValidPassword({
         isError: false,
         isValid: true,
@@ -78,7 +79,7 @@ export default function LoginScreen (): JSX.Element {
         });
       }
 
-      if (passwordRef.current.value.length < 1) {
+      if (passwordRef.current.value.search(patterPassword)) {
         setIsValidPassword({
           isError: true,
           isValid: false,
@@ -152,7 +153,7 @@ export default function LoginScreen (): JSX.Element {
         </form>
       </div>
 
-      <FooterComponent />
+      <Footer />
     </div>
   );
 }

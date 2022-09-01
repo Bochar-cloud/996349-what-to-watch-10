@@ -1,13 +1,13 @@
 import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import NotFoundScreen from '../../pages/not-found-screen/not-found-screen';
-import HeaderComponent from '../../components/header/header';
-import FooterComponent from '../../components/footer/footer';
+import Header from '../../components/header/header';
+import Footer from '../../components/footer/footer';
 import FilmList from '../../components/film-list/film-list';
 import ButtonPlay from '../../components/button-play/button-play';
 import ButtonAddReview from '../../components/button-add-review/button-add-review';
 import Tabs from '../../components/tabs/tabs';
-import ButtonMylist from '../../components/button-mylist/button-mylist';
+import ButtonMyList from '../../components/button-mylist/button-mylist';
 import {fetchFilmDetailAction, fetchSimularFilmsAction, fetchFilmCommentsAction} from '../../store/api-actions';
 import {useAppDispatch, useAppSelector} from '../../hooks';
 import {getFilmComments, getFilmDetail, getFilmsSimular} from '../../store/data-procces/selectors';
@@ -33,7 +33,7 @@ export default function FilmScreen (): JSX.Element {
       <>
         <section className="film-card film-card--full" style={{backgroundColor: filmDetail.backgroundColor}}>
           <div className="film-card__hero">
-            <HeaderComponent film={filmDetail} />
+            <Header film={filmDetail} />
 
             <div className="film-card__wrap">
               <div className="film-card__desc">
@@ -45,7 +45,7 @@ export default function FilmScreen (): JSX.Element {
                 <div className="film-card__buttons">
                   <ButtonPlay filmId={filmDetail.id}/>
 
-                  <ButtonMylist film={filmDetail}/>
+                  <ButtonMyList film={filmDetail}/>
 
                   <ButtonAddReview />
                 </div>
@@ -75,7 +75,7 @@ export default function FilmScreen (): JSX.Element {
             </div>
           </section>
 
-          <FooterComponent />
+          <Footer />
         </div>
       </> :
       <NotFoundScreen />
