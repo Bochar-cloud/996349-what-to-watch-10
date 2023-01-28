@@ -18,7 +18,6 @@ const initialState: DataProcces = {
   favoritesCount: 0,
   promoFilm: null,
   favoritesFilms: [],
-  // isFavorite: false,
 };
 
 export const dataProcces = createSlice({
